@@ -1,0 +1,28 @@
+.nav-menu__item:not(:last-child) {
+  margin-right: 30px;
+}
+
+.nav-menu__item {
+  display: flex;
+  align-items: flex-end;
+}
+
+.nav-menu__item-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+  color: #3c3c3c;
+}
+
+.nav-menu__item-icon {
+  width: 20px;
+  height: 20px;
+  padding-top: 3px;
+}
+
+.nav-menu__item-link:hover {
+  color: #f0670b;
+}
