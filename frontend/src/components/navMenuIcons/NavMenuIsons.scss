@@ -1,3 +1,4 @@
+@import "./../../scss/variables";
 .nav-menu-icons{
   display: flex;
   align-items: flex-end;
@@ -9,8 +10,8 @@
   width: 25px;
   height: 25px;
   cursor: pointer;
-  color: #3c3c3c;
+  color: $dark-main;
 }
 .nav-menu-icons__item-basic:hover{
-  color: #f0670b;
+  color: $orange-main;
 }

@@ -1,6 +1,11 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
+}
+.content-main {
+  background-color: #f3f3f4;
+  padding: 10px 200px;
+  min-height: calc(100vh - 400px);
 }

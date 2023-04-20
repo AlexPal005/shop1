@@ -1,3 +1,4 @@
+@import './../../scss/variables';
 .nav-menu__item:not(:last-child) {
   margin-right: 30px;
 }
@@ -14,7 +15,7 @@
   font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.7px;
-  color: #3c3c3c;
+  color: $dark-main;
 }
 
 .nav-menu__item-icon {
@@ -24,5 +25,5 @@
 }
 
 .nav-menu__item-link:hover {
-  color: #f0670b;
+  color: $orange-main;
 }

@@ -1,0 +1,111 @@
+@import './../../scss/variables';
+
+.footer {
+  padding: 25px 200px 10px;
+  background-color: #1a1a1a;
+  display: flex;
+  justify-content: space-between;
+  height: 300px;
+}
+
+.list-footer {
+  @extend .list-basic;
+}
+
+.link-footer-basic {
+  @extend .link-basic;
+  margin-bottom: 10px;
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.link-footer, .footer_social__item {
+  color: $orange-main;
+}
+
+.link-footer {
+  @extend .link-footer-basic;
+}
+
+.link-footer:hover, .footer_social__item :hover {
+  color: $yellow-main;
+}
+
+.white-text {
+  @extend .link-footer-basic;
+  color: white;
+}
+
+.footer__social {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.social-icon {
+  width: 23px;
+  height: 23px;
+}
+
+.follow-us-block {
+  margin-top: 45px;
+}
+
+.follow__input {
+  width: 293px;
+  height: 42px;
+  padding: 0 24px;
+  color: #787878;
+  border-radius: 2px;
+  border: none;
+  margin-top: 20px;
+}
+
+.follow__input:focus {
+  border: 1px solid $orange-main;
+  outline: none;
+}
+
+.follow-us__button-send {
+  padding: 7.5px 12px;
+  width: 42px;
+  margin-left: 25px;
+  background: $yellow-main;
+  height: 42px;
+  border-radius: 30px;
+  border: solid 2px $yellow-main;
+  font-weight: 800;
+  color: $dark-main;
+  transform: perspective(1px) translateZ(0);
+  position: relative;
+  transition-property: color;
+  transition-duration: 0.3s;
+  overflow: hidden;
+}
+.follow-us__button-send:hover, .follow-us__button-send:active, .follow-us__button-send.active, .follow-us__button-send.disabled, .btn-default[disabled] {
+  background-color: #fff;
+  color: #fecc00;
+  border: solid 2px #fecc00;
+  overflow: hidden;
+}
+
+.follow-us__button-send:focus::before, .follow-us__button-send:active::before, .follow-us__button-send:hover::before {
+  transform: scaleY(1);
+}
+.follow-us__button-send:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  transform: scaleY(0);
+  transform-origin: 50% 0;
+  transition-property: transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+  border-radius: 100px;
+}
