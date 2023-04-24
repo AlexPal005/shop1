@@ -34,13 +34,17 @@ export const Footer = () => {
             <div>
                 <p className='white-text'>Контакти:</p>
                 <ul>
-                    <li className='white-text'>med@bartnik.ua</li>
-                    <li className='white-text'>тел.: +3(03852) 4-13-46</li>
-                    <li className='white-text'>вул. Олександра Кушнірука,4А, м.Ізяслав, Хмельницька</li>
+                    <li className='white-text'>buckfast@gmail.com</li>
+                    <li className='white-text'>тел.: +38012345678</li>
+                    <li className='white-text'>Київ, вулиця Київська, 1</li>
                 </ul>
                 <div className='follow-us-block'>
                     <p className='white-text' >Підпишіться на наші новини</p>
-                    <input type='email' className='follow__input'/>
+                    <input
+                        type='email'
+                        className='follow__input'
+                        placeholder='Уведіть ваш email'
+                    />
                     <button className='follow-us__button-send'>></button>
                 </div>
             </div>

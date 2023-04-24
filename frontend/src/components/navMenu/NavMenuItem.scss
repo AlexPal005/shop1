@@ -1,4 +1,5 @@
 @import './../../scss/variables';
+
 .nav-menu__item:not(:last-child) {
   margin-right: 30px;
 }
@@ -6,6 +7,8 @@
 .nav-menu__item {
   display: flex;
   align-items: flex-end;
+  position: relative;
+  padding-bottom: 20px;
 }
 
 .nav-menu__item-link {
@@ -26,4 +29,52 @@
 
 .nav-menu__item-link:hover {
   color: $orange-main;
+}
+
+.drop-down-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 200px;
+  height: 225px;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.24);
+  z-index: 1000;
+  background-color: #fff;
+}
+
+.drop-down__inner {
+  padding: 20px;
+  background-color: #fff;
+}
+
+.drop-down-menu:after {
+  content: '';
+  position: absolute;
+  background: #fff;
+  right: 30px;
+  top: -10px;
+  width: 20px;
+  height: 20px;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.24);
+  z-index: -1;
+  transform: rotate(-45deg);
+}
+.drop-down-menu__title{
+  font-size: 18px;
+  font-weight: 600;
+  color: $dark-main;
+  margin-bottom: 15px;
+}
+.drop-down-menu__item{
+  padding: 10px;
+}
+.drop-down-menu__item:hover{
+  background-color: $yellow-hover;
+}
+.drop-down-menu__list{
+  @extend .list-basic;
+}
+.drop-down-menu__link{
+  @extend .link-basic;
+  color: $dark-main;
 }

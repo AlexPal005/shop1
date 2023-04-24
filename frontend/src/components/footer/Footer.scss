@@ -85,8 +85,8 @@
 }
 .follow-us__button-send:hover, .follow-us__button-send:active, .follow-us__button-send.active, .follow-us__button-send.disabled, .btn-default[disabled] {
   background-color: #fff;
-  color: #fecc00;
-  border: solid 2px #fecc00;
+  color: $yellow-main;
+  border: solid 2px $yellow-main;
   overflow: hidden;
 }
 
