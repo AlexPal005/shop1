@@ -1,11 +1,15 @@
 import './NavMenuIsons.scss'
 import {FiHeart, FiSearch} from "react-icons/fi";
 import {RiAccountCircleLine, RiShoppingCartLine} from "react-icons/ri";
-import {useState} from "react";
-import {RegisterForm} from "../RegisterForm/RegisterForm.jsx";
+import {useEffect, useState} from "react";
+import {useKeycloak} from "@react-keycloak/web";
 
 export const NavMenuIcons = () => {
-    const [isClickedAccountIcon, setIsClickedAccountIcon] = useState(false);
+    const {keycloak, initialized} = useKeycloak()
+    useEffect(() => {
+        console.log(keycloak.authenticated)
+    }, [])
+
 
     return (
         <div className='nav-menu-icons'>
@@ -16,13 +20,9 @@ export const NavMenuIcons = () => {
                 name='account'
                 className='nav-menu-icons__item-basic'
                 onClick={() => {
-                    setIsClickedAccountIcon(prev => !prev)
+                    keycloak.login()
                 }}
             />
-            {
-                isClickedAccountIcon &&
-                <RegisterForm/>
-            }
         </div>
     )
 }
