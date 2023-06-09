@@ -2,16 +2,16 @@ import {Link} from "react-router-dom";
 
 export const DropDownMenu = ({menuItems}) => {
     return (
-        <ul className='drop-down-menu__list'>
+        <div>
             {menuItems.map((item, index) => {
                 return (
-                    <li key={index} className='drop-down-menu__item'>
-                        <Link to={item.link} className='drop-down-menu__link'>
+                    <Link to={item.link} key={index} className='drop-down-menu__link'>
+                        <div className='drop-down-menu__item'>
                             {item.text}
-                        </Link>
-                    </li>
+                        </div>
+                    </Link>
                 )
             })}
-        </ul>
+        </div>
     )
 }

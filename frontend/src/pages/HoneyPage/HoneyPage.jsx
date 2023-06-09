@@ -26,10 +26,6 @@ export const HoneyPage = () => {
         getProducts()
     }, [])
 
-    useEffect(() => {
-        console.log(products)
-    }, [products])
-
     return (
         <div className='container'>
             {
@@ -37,8 +33,8 @@ export const HoneyPage = () => {
                     <div className='row row-cols-3'>
                         {
                             products.length &&
-                            products.map((product, index) => {
-                                return (<Card product={product}/>)
+                            products.map((product) => {
+                                return (<Card product={product} key={product.productId}/>)
                             })
                         }
                     </div>

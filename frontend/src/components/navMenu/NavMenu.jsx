@@ -26,7 +26,7 @@ export const NavMenu = () => {
         }
     ]);
     return (
-        <ul className='nav-menu'>
+        <ul className='nav-menu-top'>
             {
                 menuItems.map((item, index) => {
                     return <NavMenuItem menuItem={item} key={index}/>

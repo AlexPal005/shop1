@@ -36,14 +36,13 @@
   top: 100%;
   right: 0;
   width: 200px;
-  height: 225px;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.24);
   z-index: 1000;
   background-color: #fff;
 }
 
 .drop-down__inner {
-  padding: 20px;
+  padding: 10px;
   background-color: #fff;
 }
 
@@ -63,16 +62,13 @@
   font-size: 18px;
   font-weight: 600;
   color: $dark-main;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 .drop-down-menu__item{
-  padding: 10px;
+  padding: 3px;
 }
 .drop-down-menu__item:hover{
   background-color: $yellow-hover;
-}
-.drop-down-menu__list{
-  @extend .list-basic;
 }
 .drop-down-menu__link{
   @extend .link-basic;
