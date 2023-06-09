@@ -1,28 +1,41 @@
 import './NavMenuIsons.scss'
-import {FiHeart, FiSearch} from "react-icons/fi";
-import {RiAccountCircleLine, RiShoppingCartLine} from "react-icons/ri";
-import {useEffect, useState} from "react";
-import {useKeycloak} from "@react-keycloak/web";
+import {FiHeart, FiSearch} from "react-icons/fi"
+import {RiAccountCircleLine, RiShoppingCartLine} from "react-icons/ri"
+import {useEffect, useState} from "react"
+import {useKeycloak} from "@react-keycloak/web"
 
 export const NavMenuIcons = () => {
-    const {keycloak, initialized} = useKeycloak()
+    const {keycloak} = useKeycloak()
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
     useEffect(() => {
-        console.log(keycloak.authenticated)
-    }, [])
+        setIsLoggedIn(keycloak.authenticated)
+    }, [keycloak.authenticated])
 
+    useEffect(() => {
+        console.log(isLoggedIn)
+    }, [isLoggedIn])
 
     return (
         <div className='nav-menu-icons'>
             <FiSearch className='nav-menu-icons__item-basic'/>
             <FiHeart className='nav-menu-icons__item-basic'/>
             <RiShoppingCartLine className='nav-menu-icons__item-basic'/>
-            <RiAccountCircleLine
-                name='account'
-                className='nav-menu-icons__item-basic'
-                onClick={() => {
-                    keycloak.login()
-                }}
-            />
+            {
+                isLoggedIn ?
+                    <span
+                        className='nav-menu-icons__item-basic text-logIn'
+                        onClick={() => {
+                            keycloak.logout({redirectUri: 'http://localhost:5173/'});
+                        }}
+
+                    >Вийти</span> :
+                    <span
+                        className='nav-menu-icons__item-basic text-logIn'
+                        onClick={() => {
+                            keycloak.login()
+                        }}
+                    >Увійти</span>
+            }
         </div>
     )
 }

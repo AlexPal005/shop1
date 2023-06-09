@@ -1,18 +1,27 @@
 @import "./../../scss/variables";
-.nav-menu-icons{
+
+.nav-menu-icons {
   display: flex;
   align-items: flex-end;
   padding-bottom: 20px;
 }
-.nav-menu-icons__item-basic:not(:last-child){
+
+.nav-menu-icons__item-basic:not(:last-child) {
   margin-right: 30px;
 }
-.nav-menu-icons__item-basic{
+
+.nav-menu-icons__item-basic {
   width: 25px;
   height: 25px;
   cursor: pointer;
   color: $dark-main;
 }
-.nav-menu-icons__item-basic:hover{
+
+.nav-menu-icons__item-basic:hover {
   color: $orange-main;
+}
+
+.text-logIn {
+  font-size: 22px;
+  padding-top: 2px;
 }

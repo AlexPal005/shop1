@@ -6,7 +6,7 @@ export const DropDownMenu = ({menuItems}) => {
             {menuItems.map((item, index) => {
                 return (
                     <li key={index} className='drop-down-menu__item'>
-                        <Link to='' className='drop-down-menu__link'>
+                        <Link to={item.link} className='drop-down-menu__link'>
                             {item.text}
                         </Link>
                     </li>
