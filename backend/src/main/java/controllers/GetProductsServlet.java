@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import models.DataBaseConnection;
+import dataBase.DataBaseConnection;
 import models.Product;
 
 import java.io.IOException;
@@ -14,7 +14,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Base64;
 
 @WebServlet(name = "ProductServlet", value = "/GetProducts")
@@ -44,9 +43,9 @@ public class GetProductsServlet extends HttpServlet {
             String productsJson = new Gson().toJson(products);
             PrintWriter out = response.getWriter();
 
+            System.out.println(request.getQueryString());
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
-
             out.print(productsJson);
             out.flush();
             stmt.close();

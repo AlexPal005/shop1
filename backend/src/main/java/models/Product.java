@@ -1,5 +1,8 @@
 package models;
 
+import lombok.Data;
+
+@Data
 public class Product {
     private int productId;
     private String productName;
@@ -13,45 +16,5 @@ public class Product {
         this.description = description;
         this.price = price;
         this.image = image;
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 }

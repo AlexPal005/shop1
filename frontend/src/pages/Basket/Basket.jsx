@@ -1,10 +1,24 @@
-import {useEffect, useState} from "react"
+import {useEffect, useRef, useState} from "react"
 import {CardBasketProduct} from "./CardBasketProduct"
 import "./Basket.scss"
+import axios from "axios";
 
 export const Basket = () => {
     const [basketProducts, setBasketProducts] = useState([])
     const [resultSum, setResultSum] = useState(0)
+
+    const [surname, setSurname] = useState("");
+    const [name, setName] = useState("");
+    const [phone, setPhone] = useState("");
+    const [email, setEmail] = useState("");
+    const [delivery, setDelivery] = useState("");
+    const [city, setCity] = useState("");
+    const [address, setAddress] = useState("");
+
+    const refNovaPost = useRef(null);
+    const refUkr = useRef(null);
+
+
     useEffect(() => {
         setBasketProducts(JSON.parse(localStorage.getItem('basket')))
     }, [])
@@ -16,6 +30,30 @@ export const Basket = () => {
             })
         }
     }, [basketProducts])
+
+    const sendOrder = () => {
+        if (refNovaPost.current.checked) {
+            setDelivery("Нова пошта")
+        } else {
+            setDelivery("Укр пошта")
+        }
+        axios.post('http://localhost:8081/AddOrder',
+            {
+                surname: surname,
+                name: name,
+                phone: phone,
+                email: email,
+                delivery: delivery,
+                city: city,
+                address: address
+            })
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
 
     return (
         <div>
@@ -30,40 +68,68 @@ export const Basket = () => {
                             <form>
                                 <div className="mb-3">
                                     <label className="form-label">Прізвище</label>
-                                    <input type="text" className="form-control"/>
+                                    <input type="text" className="form-control"
+                                           onChange={e => {
+                                               setSurname(e.target.value)
+                                           }}
+                                    />
                                 </div>
                                 <div className="mb-3">
                                     <label className="form-label">Ім'я</label>
-                                    <input type="text" className="form-control"/>
+                                    <input type="text" className="form-control"
+                                           onChange={e => {
+                                               setName(e.target.value)
+                                           }}
+                                    />
                                 </div>
                                 <div className="mb-3">
                                     <label className="form-label">Телефон</label>
-                                    <input type="text" className="form-control"/>
+                                    <input type="text" className="form-control"
+                                           onChange={e => {
+                                               setPhone(e.target.value)
+                                           }}
+                                    />
                                 </div>
                                 <div className="mb-3">
                                     <label className="form-label">Email</label>
-                                    <input type="email" className="form-control"/>
+                                    <input type="email" className="form-control"
+                                           onChange={e => {
+                                               setEmail(e.target.value)
+                                           }}
+                                    />
                                 </div>
                                 <h4>Доставка</h4>
                                 <div className="form-check">
-                                    <input className="form-check-input" type="radio" name="flexRadioDefault"/>
+                                    <input className="form-check-input"
+                                           type="radio"
+                                           name="flexRadioDefault"
+                                           ref={refNovaPost}
+                                    />
                                     <label className="form-check-label">
                                         Нова Пошта
                                     </label>
                                 </div>
                                 <div className="form-check">
-                                    <input className="form-check-input" type="radio" name="flexRadioDefault"/>
+                                    <input className="form-check-input" type="radio" name="flexRadioDefault"
+                                           ref={refUkr}
+                                    />
                                     <label className="form-check-label">
                                         УкрПошта
                                     </label>
                                 </div>
                                 <div className="mb-3 mt-3">
                                     <label className="form-label">Місто доставки</label>
-                                    <input type="text" className="form-control"/>
+                                    <input type="text" className="form-control"
+                                           onChange={e => {
+                                               setCity(e.target.value)
+                                           }}/>
                                 </div>
                                 <div className="mb-3">
                                     <label className="form-label">Адреса</label>
-                                    <input type="text" className="form-control"/>
+                                    <input type="text" className="form-control"
+                                           onChange={e => {
+                                               setAddress(e.target.value)
+                                           }}/>
                                 </div>
                             </form>
                         </div>
@@ -77,7 +143,7 @@ export const Basket = () => {
                                         {
                                             basketProducts.map(product => {
                                                 return (
-                                                    <CardBasketProduct product={product} key ={product.productId}/>
+                                                    <CardBasketProduct product={product} key={product.productId}/>
                                                 )
                                             })
                                         }
@@ -94,8 +160,7 @@ export const Basket = () => {
                             <button
                                 type="submit"
                                 className="btn btn-warning"
-                                onClick={() => {
-                                }}
+                                onClick={sendOrder}
                             >Оформити
                             </button>
                         </div>

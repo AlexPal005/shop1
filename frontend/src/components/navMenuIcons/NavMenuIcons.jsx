@@ -1,7 +1,7 @@
 import './NavMenuIsons.scss'
 import {FiHeart, FiSearch} from "react-icons/fi"
-import {RiAccountCircleLine, RiShoppingCartLine} from "react-icons/ri"
-import {useEffect, useState} from "react"
+import {RiShoppingCartLine} from "react-icons/ri"
+import {useCallback, useEffect, useState} from "react"
 import {useKeycloak} from "@react-keycloak/web"
 import {Link} from "react-router-dom";
 
@@ -11,6 +11,14 @@ export const NavMenuIcons = () => {
     useEffect(() => {
         setIsLoggedIn(keycloak.authenticated)
     }, [keycloak.authenticated])
+
+    const logIn = useCallback(() => {
+        keycloak.login()
+    }, [keycloak])
+
+    const logOut = useCallback(() => {
+        keycloak.logout({redirectUri: 'http://localhost:5173/'})
+    }, [keycloak])
 
     useEffect(() => {
         console.log(isLoggedIn)
@@ -27,16 +35,12 @@ export const NavMenuIcons = () => {
                 isLoggedIn ?
                     <span
                         className='nav-menu-icons__item-basic text-logIn'
-                        onClick={() => {
-                            keycloak.logout({redirectUri: 'http://localhost:5173/'});
-                        }}
+                        onClick={logOut}
 
                     >Вийти</span> :
                     <span
                         className='nav-menu-icons__item-basic text-logIn'
-                        onClick={() => {
-                            keycloak.login()
-                        }}
+                        onClick={logIn}
                     >Увійти</span>
             }
         </div>
