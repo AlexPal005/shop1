@@ -8,6 +8,7 @@ import {useKeycloak} from "@react-keycloak/web";
 import {useEffect, useState} from "react";
 import jwt_decode from "jwt-decode";
 import {AdminPage} from "./pages/AdminPage/AdminPage";
+import {AddProduct} from "./pages/AdminPage/AddProduct";
 
 function App() {
     const {keycloak} = useKeycloak()
@@ -31,7 +32,11 @@ function App() {
                     <Route path='/basket' element={<Basket/>}/>
                     {
                         roles.includes('admin') &&
-                        <Route path='/admin' element={<AdminPage/>}/>
+                        <>
+                            <Route path='admin/*' element={<AdminPage/>}/>
+                            <Route path='admin/addProduct' element={<AddProduct/>}/>
+                        </>
+
                     }
                     <Route path="*" component={<div>main</div>}/>
                 </Routes>
