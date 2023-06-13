@@ -4,8 +4,22 @@ import {Header} from "./components/header/Header.jsx"
 import {Footer} from "./components/footer/Footer.jsx"
 import {HoneyPage} from "./pages/HoneyPage/HoneyPage";
 import {Basket} from "./pages/Basket/Basket";
+import {useKeycloak} from "@react-keycloak/web";
+import {useEffect, useState} from "react";
+import jwt_decode from "jwt-decode";
+import {AdminPage} from "./pages/AdminPage/AdminPage";
 
 function App() {
+    const {keycloak} = useKeycloak()
+    const [roles, setRoles] = useState([])
+
+    useEffect(() => {
+        //decode jwt token
+        if (keycloak.token) {
+            const decoded = jwt_decode(keycloak.token)
+            setRoles(decoded.realm_access.roles)
+        }
+    }, [keycloak.token]);
 
     return (
         <div className='app'>
@@ -15,6 +29,11 @@ function App() {
                     <Route path='/' element={<div>main</div>}/>
                     <Route path='/honey' element={<HoneyPage/>}/>
                     <Route path='/basket' element={<Basket/>}/>
+                    {
+                        roles.includes('admin') &&
+                        <Route path='/admin' element={<AdminPage/>}/>
+                    }
+                    <Route path="*" component={<div>main</div>}/>
                 </Routes>
             </div>
             <Footer/>

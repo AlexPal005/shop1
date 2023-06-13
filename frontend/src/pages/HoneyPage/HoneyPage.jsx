@@ -1,32 +1,9 @@
-import {useCallback, useEffect, useState} from "react"
-import axios from "axios"
 import {Card} from "./Card.jsx"
 import './HoneyPage.scss'
-import {useKeycloak} from "@react-keycloak/web";
+import {useGetProducts} from "../useGetProducts.js";
 
 export const HoneyPage = () => {
-    const [products, setProducts] = useState([])
-    const [isLoading, setIsLoading] = useState(false)
-    const {keycloak} = useKeycloak()
-
-    // get products from bd
-    const getProducts = useCallback(() => {
-        setIsLoading(true)
-        axios.get('http://localhost:8081/GetProducts', {params: {token: keycloak.token}})
-            .then(response => {
-                setProducts(response.data)
-                setIsLoading(false)
-            })
-            .catch(err => {
-                console.log(err)
-                setIsLoading(false)
-            })
-    }, [])
-
-    // perform getting products
-    useEffect(() => {
-        getProducts()
-    }, [keycloak.token])
+    const [isLoading, products] = useGetProducts()
 
     return (
         <div className='container'>

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Base64;
 
 @WebServlet(name = "ProductServlet", value = "/GetProducts")
-public class GetProductsServlet extends HttpServlet {
+public class GetProducts extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DataBaseConnection dataBaseConnection = new DataBaseConnection();

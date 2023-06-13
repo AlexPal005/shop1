@@ -45,7 +45,8 @@ export const Basket = () => {
                 email: email,
                 delivery: delivery,
                 city: city,
-                address: address
+                address: address,
+                price: resultSum
             })
             .then(res => {
                 console.log(res)
