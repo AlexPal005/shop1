@@ -23,7 +23,7 @@ export const AddProduct = () => {
 
     function handleChangeFile(e) {
         getBase64(e.target.files[0], (res) => {
-            res = res.slice(23, res.length - 1)
+           res = res.slice(21, res.length - 1)
             setFile(res)
         })
     }
@@ -32,7 +32,7 @@ export const AddProduct = () => {
         e.preventDefault()
         setRes("")
         axios.post('http://localhost:8081/AddProductAdmin', {
-                file: file,
+                image: file,
                 productName: productName,
                 description: description,
                 price: price

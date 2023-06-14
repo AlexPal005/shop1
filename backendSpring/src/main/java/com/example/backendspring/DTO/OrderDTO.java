@@ -4,8 +4,13 @@ import lombok.Data;
 
 @Data
 public class OrderDTO {
-    private String productName;
-    private String description;
+    private String surname;
+    private String name;
+    private String phoneNumber;
+    private String email;
+    private String delivery;
+    private String city;
+    private String address;
     private double price;
-    private byte[] image;
+    private Long userId;
 }

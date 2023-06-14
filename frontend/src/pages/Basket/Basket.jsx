@@ -41,7 +41,7 @@ export const Basket = () => {
             {
                 surname: surname,
                 name: name,
-                phone: phone,
+                phoneNumber: phone,
                 email: email,
                 delivery: delivery,
                 city: city,

@@ -7,5 +7,6 @@ public class ProductDTO {
     private String productName;
     private String description;
     private double price;
-    private byte[] image;
+    private String image;
+    private Long categoryId;
 }

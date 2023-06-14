@@ -6,6 +6,8 @@ import com.example.backendspring.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -18,7 +20,8 @@ public class ProductService {
                 .productName(productDTO.getProductName())
                 .description(productDTO.getDescription())
                 .price(productDTO.getPrice())
-                .image(productDTO.getImage())
+                .image(Base64.getDecoder().decode(productDTO.getImage()))
+                .categoryId(1L)
                 .build();
         return productRepository.save(product);
     }

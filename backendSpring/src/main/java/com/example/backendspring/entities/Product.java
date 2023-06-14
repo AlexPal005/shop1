@@ -3,6 +3,7 @@ package com.example.backendspring.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+
 @Entity
 @Getter
 @Setter
@@ -15,7 +16,8 @@ public class Product {
     private String description;
     private double price;
     private byte[] image;
+    private Long categoryId;
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
 }
