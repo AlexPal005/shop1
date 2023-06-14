@@ -33,6 +33,5 @@ public class OrderDAOImpl implements OrderDAO {
         preparedStatement.setDouble(8, order.getPrice());
         preparedStatement.setInt(9, 1);
         int rows = preparedStatement.executeUpdate();
-        System.out.println(rows);
     }
 }
