@@ -1,11 +1,14 @@
 import {useState} from "react";
 import axios from "axios";
+import {useKeycloak} from "@react-keycloak/web";
 
 export const AddProduct = () => {
     const [file, setFile] = useState("");
     const [productName, setProductName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
+    const {keycloak} = useKeycloak()
+    const [res, setRes] = useState("")
 
     function getBase64(file, cb) {
         let reader = new FileReader();
@@ -21,24 +24,32 @@ export const AddProduct = () => {
     function handleChangeFile(e) {
         getBase64(e.target.files[0], (res) => {
             res = res.slice(23, res.length - 1)
-            console.log(res)
             setFile(res)
         })
     }
 
     const sendProduct = (e) => {
         e.preventDefault()
+        setRes("")
         axios.post('http://localhost:8081/AddProductAdmin', {
-            file: file,
-            productName: productName,
-            description: description,
-            price: price
-        })
+                file: file,
+                productName: productName,
+                description: description,
+                price: price
+            },
+            {
+                headers: {
+                    token: keycloak.token
+                }
+            }
+        )
             .then(res => {
                 console.log(res)
+                setRes('Успішно додано!')
             })
             .catch(err => {
                 console.log(err)
+                setRes('Помилка! ' + err.message)
             })
     }
 
@@ -76,6 +87,10 @@ export const AddProduct = () => {
                     onClick={sendProduct}
                 >Додати
                 </button>
+                {
+                    res &&
+                    <p style={{color: 'red'}}>{res}</p>
+                }
             </form>
         </div>
     )

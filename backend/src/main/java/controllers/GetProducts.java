@@ -43,7 +43,6 @@ public class GetProducts extends HttpServlet {
             String productsJson = new Gson().toJson(products);
             PrintWriter out = response.getWriter();
 
-            System.out.println(request.getQueryString());
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             out.print(productsJson);

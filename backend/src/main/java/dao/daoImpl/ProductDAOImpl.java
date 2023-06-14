@@ -33,5 +33,17 @@ public class ProductDAOImpl implements ProductDAO {
         preparedStatement.setBytes(5, Base64.getDecoder().decode(product.getImage()));
         int rows = preparedStatement.executeUpdate();
         System.out.println(rows);
+        preparedStatement.close();
     }
+
+    @Override
+    public void deleteProduct(int productId) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "DELETE FROM products WHERE \"productId\" = ?"
+        );
+        preparedStatement.setInt(1, productId);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+
 }

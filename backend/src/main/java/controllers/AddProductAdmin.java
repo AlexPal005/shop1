@@ -11,7 +11,6 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Base64;
 
 @WebServlet(name = "AddProductAdmin", value = "/AddProductAdmin")
 public class AddProductAdmin extends HttpServlet {
@@ -29,16 +28,16 @@ public class AddProductAdmin extends HttpServlet {
                 sb.append(line).append('\n');
             }
         }
-        JSONObject orderDataJson = new JSONObject(sb.toString());
+        JSONObject productDataJson = new JSONObject(sb.toString());
 
         try {
             ProductDAO productDAO = new ProductDAOImpl();
             productDAO.addProduct(
                     new Product(
-                            orderDataJson.getString("productName"),
-                            orderDataJson.getString("description"),
-                            orderDataJson.getDouble("price"),
-                            orderDataJson.getString("file")
+                            productDataJson.getString("productName"),
+                            productDataJson.getString("description"),
+                            productDataJson.getDouble("price"),
+                            productDataJson.getString("file")
                     )
             );
         } catch (SQLException e) {

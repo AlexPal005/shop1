@@ -7,10 +7,12 @@ export const useGetProducts = () => {
     const [products, setProducts] = useState([])
     const {keycloak} = useKeycloak()
 
+    const [update, setUpdate] = useState(1);
+
     // get products from db
     const getProducts = useCallback(() => {
         setIsLoading(true)
-        axios.get('http://localhost:8081/GetProducts', {params: {token: keycloak.token}})
+        axios.get('http://localhost:8081/GetProducts',{headers: {token: keycloak.token}})
             .then(response => {
                 setProducts(response.data)
                 setIsLoading(false)
@@ -19,11 +21,11 @@ export const useGetProducts = () => {
                 console.log(err)
                 setIsLoading(false)
             })
-    }, [keycloak.token])
+    }, [keycloak.token, update])
 
     useEffect(() => {
         getProducts()
-    }, [keycloak.token])
+    }, [keycloak.token, update])
 
-    return [isLoading, products]
+    return [isLoading, products, setUpdate]
 }
