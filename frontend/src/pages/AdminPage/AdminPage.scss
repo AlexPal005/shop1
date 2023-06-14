@@ -1,0 +1,24 @@
+.main-admin{
+  width: 60%;
+}
+.card-admin{
+  height: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.img-product-admin{
+  height: 80%;
+  width: 15%;
+  float: left;
+}
+.delete-button-admin{
+  width: 30px;
+  height: 30px;
+  color: red;
+  cursor: pointer;
+}
+.link-add-product{
+  text-decoration: none;
+}
